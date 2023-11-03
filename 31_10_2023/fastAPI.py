@@ -15,6 +15,7 @@ from datetime import datetime
 app = FastAPI()
 templates = Jinja2Templates(directory="templates")
 
+thoigian=str(datetime.now().isoformat())
 trang_thai = " "
 
 # Định nghĩa tài khoản và mật khẩu
@@ -43,35 +44,29 @@ def get_api_key(api_key: str = Depends(api_key_header)):
 
 
 class Master(BaseModel):
-    id: int
     led1_status: int
     led2_status: int
     temp: float
     humi: float
-    timestamp: str
+
 
 
 class st(BaseModel):
     status: str
 
 class IotGateWay(BaseModel):
-    id: int
     lamp: int
     siren: int
-    timestamp: str
 
 
 class IotNode(BaseModel):
-    id: int
     vibration: int
     relay: int
     Light_Sensor: float
     Distance_Sensor: float
-    timestamp: str
 
 
 class AllData(BaseModel):
-    id: int
     led1_status: int
     led2_status: int
     temp: float
@@ -82,7 +77,7 @@ class AllData(BaseModel):
     relay: int
     Light_Sensor: float
     Distance_Sensor: float
-    timestamp: str
+
 
 class SingleData(BaseModel):
     id: int
@@ -243,7 +238,6 @@ async def get_master_data():
     print(latest_data)
     if latest_data:
         return {
-            "id": latest_data["id"],
             "led1_status": latest_data["led1_status"],
             "led2_status": latest_data["led2_status"],
             "temp": latest_data["temp"],
@@ -258,7 +252,6 @@ async def get_gateway_data():
     latest_data = mycol1.find_one(sort=[("timestamp", pymongo.DESCENDING)])
     if latest_data:
         return {
-            "id": latest_data["id"],
             "lamp": latest_data["lamp"],
             "siren": latest_data["siren"],
             "timestamp": latest_data["timestamp"]
@@ -271,7 +264,6 @@ async def get_node_data():
     latest_data = mycol2.find_one(sort=[("timestamp", pymongo.DESCENDING)])
     if latest_data:
         return {
-            "id": latest_data["id"],
             "vibration": latest_data["vibration"],
             "relay": latest_data["relay"],
             "Light_Sensor": latest_data["Light_Sensor"],
@@ -286,7 +278,6 @@ async def get_all_data():
     latest_data = cottatcadulieu.find_one(sort=[("timestamp", pymongo.DESCENDING)])
     if latest_data:
         return  {
-            "id" : latest_data['id'],
             "led1_status": latest_data['led1_status'],
             "led2_status": latest_data['led2_status'],
             "temp": latest_data['temp'],
@@ -304,13 +295,13 @@ async def get_all_data():
 
 @app.post("/update_master_data")
 async def update_master_data(item: Master,api_key: str = Depends(get_api_key)):
+    global thoigian
     master_data = {
-        "id": item.id,
         "led1_status": item.led1_status,
         "led2_status": item.led2_status,
         "temp": item.temp,
         "humi": item.humi,
-        "timestamp": item.timestamp
+        "timestamp": thoigian
     }
     mycol.insert_one(master_data)
     return JSONResponse(content={"message": "Dữ liệu Master đã được cập nhật"})
@@ -318,11 +309,11 @@ async def update_master_data(item: Master,api_key: str = Depends(get_api_key)):
 
 @app.post("/update_gateway_data")
 async def update_gateway_data(item: IotGateWay,api_key: str = Depends(get_api_key)):
+    global thoigian
     gateway_data = {
-        "id": item.id,
         "lamp": item.lamp,
         "siren": item.siren,
-        "timestamp": item.timestamp
+        "timestamp": thoigian
     }
     mycol1.insert_one(gateway_data)
     return JSONResponse(content={"message": "Dữ liệu Gateway đã được cập nhật"})
@@ -330,13 +321,13 @@ async def update_gateway_data(item: IotGateWay,api_key: str = Depends(get_api_ke
 
 @app.post("/update_node_data")
 async def update_node_data(item: IotNode,api_key: str = Depends(get_api_key)):
+    global thoigian
     node_data = {
-        "id": item.id,
         "vibration": item.vibration,
         "relay": item.relay,
         "Light_Sensor": item.Light_Sensor,
         "Distance_Sensor": item.Distance_Sensor,
-        "timestamp": item.timestamp
+        "timestamp": thoigian
     }
     mycol2.insert_one(node_data)
     return JSONResponse(content={"message": "Dữ liệu Node đã được cập nhật"})
@@ -344,8 +335,8 @@ async def update_node_data(item: IotNode,api_key: str = Depends(get_api_key)):
 
 @app.post("/update_all_data")
 async def update_data_post(item: AllData,api_key: str = Depends(get_api_key)):
+    global thoigian
     BT = {
-        "id" : item.id,
         "led1_status": item.led1_status,
         "led2_status": item.led2_status,
         "temp": item.temp,
@@ -356,7 +347,7 @@ async def update_data_post(item: AllData,api_key: str = Depends(get_api_key)):
         "relay": item.relay,
         "Light_Sensor": item.Light_Sensor,
         "Distance_Sensor": item.Distance_Sensor,
-        "timestamp": item.timestamp
+        "timestamp": thoigian
     }
     cottatcadulieu.insert_one(BT)
     return { "message": "Dữ liệu đã được cập nhật"}
