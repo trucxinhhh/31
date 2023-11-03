@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Trang Chuyển Hướng</title>
+    <style>
+        body {
+            background-color: #023047;
+            color: #fb8500;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 24px;
+            margin: 20px;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #fb8500;
+            color: #023047;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 10px;
+        }
+
+        button:hover {
+            background-color: #023047;
+            color: #fb8500;
+        }
+    </style>
+</head>
+<body>
+    <button onclick="redirectToInterface()">Chuyển đến Interface</button>
+    <button onclick="redirectToGraph()">Chuyển đến Graph</button>
+    <img src="https://i.pinimg.com/originals/57/61/5b/57615b8c0092a66c1d4058b1692955cc.gif" alt="GIF">
+    <script>
+        function redirectToInterface() {
+            window.location.href = "/interface";  // Chuyển đến /interface
+        }
+
+        function redirectToGraph() {
+            window.location.href = "/graph";  // Chuyển đến /graph
+        }
+    </script>
+</body>
+</html>

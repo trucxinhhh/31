@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>IoT Control Panel</title>
+  <link rel="stylesheet" type="text/css" href="/static/interface.css">
+</head>
+<body>
+
+  <div class="control-panel">
+    <div class="control-box">
+                <div class="control-title">IoT Gateway</div>
+                <div class="control-content">
+                  <div class="lamp">
+                        <div id="lamp-status" class="lamp-off"></div>
+                        <p>Lamp Status <span id="lamp-text"></span></p>
+                  </div>
+
+                  <div class="siren">
+                        <div id="siren-status" class="siren-off"></div>
+                        <p>Siren Status<span id="siren-text"></span></p>
+                  </div>
+                </div>
+          </div>
+
+    <div class="control-box">
+      <div class="control-title">IoT Node</div>
+      <div class="iot-node">
+                <div class="sensor-data">
+                  <h3>Light Sensor</h3>
+                  <p id="light-sensor">0 lux</p>
+                  <h3>Distance Sensor</h3>
+                  <p id="distance-sensor">0 cm</p>
+                </div>
+                <div class="status-icons">
+                  <div class="vibration-status" id="vibration-status"></div>
+                  <div class="relay-status" id="relay-status"></div>
+                </div>
+
+          </div>
+
+    </div>
+    <div class="control-box">
+                <div class="control-title">Master</div>
+                <div class="master">
+                  <div class="sensor-data">
+                        <h3>Temperature</h3>
+                        <p id="temperature">0°C</p>
+                        <h3>Humidity</h3>
+                        <p id="humidity">0%</p>
+                        <h3>Current Time</h3>
+                        <p id="current-time">00:00:00</p>
+                </div>
+                </div>
+                  <div class="leds">
+                        <div class="led1-status" id="led1-status"></div>
+                <div class="led2-status" id="led2-status"></div>
+                </div>
+
+
+        </div>
+
+  </div>
+</body>
+<script src="/static/script.js"></script>
+
+</html>

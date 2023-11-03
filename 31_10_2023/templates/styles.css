@@ -1,0 +1,66 @@
+/* styles.css */
+body {
+  font-family: Georgia, serif; /* Chọn font "Serif" (Georgia) */
+  background-color: #14213d;
+  background-image: url('https://scontent.fsgn9-1.fna.fbcdn.net/v/t1.15752-9/395113753_715173640015055_1781808275119603206_n.png?_nc_cat=101&ccb=1-7&_nc_sid=8cd0a2&_nc_ohc=wkOujiLzW5UAX_fLqXg&_nc_ht=scontent.fsgn9-1.fna&oh=03_AdTAaCJ0EDxe7UaUDpiXdJ8mGfw5NEoXccjTgVZzykf3dA&oe=655DB581');
+  background-size:  cover;
+  background-repeat: no-repeat;
+  background-position: center 50px;
+}
+
+.container-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.container {
+  max-width: 320px;
+  margin: 280px auto 0 auto;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  background-color: rgba(255, 255, 255, 0.82);
+}
+
+h2 {
+  text-align: center;
+  color: #000000;
+  font-size: xx-large; 
+  font-family: "serif";
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 24px;
+}
+
+form {
+  text-align: center;
+}
+
+input[type="text"],
+input[type="password"] {
+  width: calc(100% - 20px);
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+#login-button {
+  background-color: #007BFF;
+  color: #fff;
+  border: none;
+  border-radius: 3px;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+#login-button:hover {
+  background-color: #0056b3;
+}
+
+.error-message {
+  color: red;
+  text-align: center;
+}
