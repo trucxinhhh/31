@@ -5,37 +5,29 @@ from random import randint
 from time import sleep
 import paho.mqtt.client as mqtt
 # Lấy thời gian hiện tại
-current_time = datetime.now()
-timestamp = str(current_time.strftime("%Y-%m-%d %H:%M:%S"))
+
 
 # Dữ liệu bạn muốn gửi lên các API POST
 data_master = {
-    "id": 1,
     "led1_status": 1,
     "led2_status": 1,
     "temp": randint(20,30),
-    "humi": randint(70,90),
-    "timestamp": timestamp
+    "humi": randint(70,90)
 }
 
 data_gateway = {
-    "id": 1,
     "lamp": 1,
-    "siren": 1,
-    "timestamp": timestamp
+    "siren": 1
 }
 
 data_node = {
-    "id": 1,
     "vibration": 1,
     "relay": 1,
     "Light_Sensor": randint(100,500),
-    "Distance_Sensor": randint(0,100),
-    "timestamp": timestamp
+    "Distance_Sensor": randint(0,100)
 }
 
 data_button = {
-        "id" : 0,
         "led1_status":1 ,
         "led2_status":1 ,
         "temp": 40,
@@ -45,8 +37,7 @@ data_button = {
         "vibration": 1,
         "relay":1 ,
         "Light_Sensor":450 ,
-        "Distance_Sensor":4 ,
-        "timestamp": timestamp
+        "Distance_Sensor":4 
 }
 
 # Chuyển đổi dữ liệu thành định dạng JSON
@@ -77,7 +68,6 @@ while True:
     response_gateway = requests.post(api_url_gateway, data=json_data_gateway, headers=headers)
     response_node = requests.post(api_url_node, data=json_data_node, headers=headers)
     response_button = requests.post(api_url_button, data=json_data_button, headers=headers)
-    client.loop()
     # Kiểm tra kết quả
     if response_master.status_code == 200:
         print("Dữ liệu Master đã được cập nhật thành công.")
